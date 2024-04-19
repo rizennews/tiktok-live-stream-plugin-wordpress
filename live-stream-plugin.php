@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: TikTok Live Stream Plugin
-Plugin URI: https://example.com
+Plugin URI: https://github.com/rizennews/tiktok-live-stream-plugin-wordpress
 Description: Custom Plugin to embed live streams from TikTok.
 Version: 1.0
-Author: Your Name
-Author URI: https://example.com
+Author: Padmore Aning
+Author URI: https://github.com/rizennews
 */
 
 // Include plugin settings page
