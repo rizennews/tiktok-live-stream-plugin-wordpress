@@ -24,6 +24,8 @@ function tiktok_live_stream_plugin_settings_page_content() {
         <p>To display the TikTok Live stream on your website, use the following shortcode on any page or post:</p>
         <pre>[tiktok_live_stream username="USERNAME"]</pre>
         <p>Replace "USERNAME" with your TikTok username.</p>
+                <p>To display the TikTok Live stream and feedback form on your website, use the following shortcode on any page or post:</p>
+        <pre>[tiktok_live_stream_with_feedback]</pre>
         <p>If you find this plugin helpful, consider buying us a coffee!</p>
         <a href="https://www.buymeacoffee.com/designolabs" target="_blank">
             <img src="https://img.buymeacoffee.com/button-api/?text=Buy%20us%20a%20coffee&emoji=&slug=yourusername&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff">
