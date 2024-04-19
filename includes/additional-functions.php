@@ -109,3 +109,15 @@ function handleTikTokFeedbackFormSubmission() {
 // Hook form submission handler
 add_action('init', 'handleTikTokFeedbackFormSubmission');
 
+// Shortcode to display TikTok Live stream and feedback form
+function tiktokLiveStreamWithFeedbackShortcode() {
+    $output = '<div class="livestream-container">';
+    $output .= displayTikTokLiveStream();
+    $output .= '</div>';
+    $output .= '<div class="feedback-form-container">';
+    $output .= displayTikTokFeedbackForm();
+    $output .= '</div>';
+
+    return $output;
+}
+add_shortcode('tiktok_live_stream_with_feedback', 'tiktokLiveStreamWithFeedbackShortcode');
