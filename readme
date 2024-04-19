@@ -1,85 +1,48 @@
-Certainly! Let's break down each section of the README file to provide detailed explanations:
-
----
-
 # TikTok Live Stream Plugin
 
-This section serves as the main title of your README file, providing a clear indication of what the plugin is about.
-
----
+The TikTok Live Stream Plugin allows you to embed live streams from TikTok onto your WordPress website.
 
 ## Features
-
-In this section, you list the key features of your TikTok Live Stream Plugin. Each feature should be described concisely, highlighting the benefits it offers to users. For example:
 
 - Embed TikTok live streams with a simple shortcode.
 - Customize the appearance and behavior of the embedded live streams.
 - Settings page to configure TikTok username and other options.
 - Widget support for easy integration into your website's sidebar or other widgetized areas.
 
----
-
 ## Installation
 
-Here, you explain how users can install the plugin on their WordPress websites. Break down the installation process into clear, step-by-step instructions. For example:
-
-1. Download the plugin ZIP file from the [latest release](https://github.com/yourusername/tiktok-live-stream-plugin/releases).
+1. Download the plugin ZIP file from the [latest release](https://github.com/rizennews/tiktok-live-stream-plugin/releases).
 2. Upload the plugin ZIP file to your WordPress website.
 3. Activate the plugin through the WordPress admin dashboard.
 
----
-
 ## Usage
-
-This section provides instructions on how users can utilize the plugin's features on their websites. Explain how users can embed TikTok live streams using shortcodes, add widgets, and configure settings. For example:
 
 ### Shortcode
 
 Use the following shortcode to embed a TikTok live stream on any page or post:
+[tiktok_live_stream]
 
-```
-[tiktok_live_stream username="USERNAME"]
-```
-
-Replace `USERNAME` with your TikTok username.
 
 ### Widget
 
-You can also add the TikTok Live Stream Widget to your website's sidebar or other widgetized areas. Navigate to Appearance > Widgets and drag the "TikTok Live Stream Widget" to the desired widget area. Enter your TikTok username in the widget settings.
+You can also add the "TikTok Live Stream Widget" to your website's sidebar or other widgetized areas. Navigate to Appearance > Widgets and drag the "TikTok Live Stream Widget" to the desired widget area. 
 
 ### Settings
 
-Navigate to Settings > TikTok Live Settings to configure your TikTok username and other options.
-
----
+Navigate to Settings > TikTok Live Stream Settings to configure your TikTok username.
 
 ## Compatibility
 
-In this section, you address the compatibility of your plugin with different WordPress themes and plugins. If your plugin has been tested with specific themes or plugins, mention them here. For example:
-
 This plugin is compatible with a wide range of WordPress themes and plugins. If you encounter any compatibility issues, please reach out to the plugin support team for assistance.
-
----
 
 ## Feedback
 
-Encourage users to provide feedback on the plugin's usability, features, and any issues they encounter. Provide instructions on how users can submit feedback or support tickets. For example:
-
-We welcome your feedback! If you have any suggestions or encounter any issues while using the plugin, please [submit a support ticket](https://github.com/yourusername/tiktok-live-stream-plugin/issues/new).
-
----
+We welcome your feedback! If you have any suggestions or encounter any issues while using the plugin, please [submit a support ticket](https://github.com/rizennews/tiktok-live-stream-plugin/issues/new).
 
 ## Contributing
 
-If you allow contributions to your plugin's development, explain how users can contribute to the project. Provide guidelines for forking the repository, making changes, and submitting pull requests. For example:
-
 Contributions to the development of this plugin are welcome. To contribute, fork the repository, make your changes, and submit a pull request.
-
----
 
 ## License
 
-Finally, specify the license under which your plugin is distributed. Include a link to the license file for users to review. For example:
-
 This plugin is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
