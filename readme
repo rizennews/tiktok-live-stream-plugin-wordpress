@@ -25,6 +25,14 @@ Use the following shortcode to display the TikTok live stream and feedback form 
 [tiktok_live_stream_with_feedback]
 ```
 
+Use the following shortcode to embed a TikTok live stream on any page or post:
+
+```
+[tiktok_live_stream username="USERNAME"]
+Replace USERNAME with your TikTok username.
+
+```
+
 ### Widget
 
 You can also use the TikTok Live Stream Widget to display the live stream and feedback form together in a widgetized area of your theme.
