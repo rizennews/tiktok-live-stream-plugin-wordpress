@@ -28,7 +28,7 @@ Use the following shortcode to display the TikTok live stream and feedback form 
 Use the following shortcode to embed a TikTok live stream on any page or post:
 
 ```
-[tiktok_live_stream username="USERNAME"]
+[tiktok_live_stream username="example_username"]
 Replace USERNAME with your TikTok username.
 
 ```
