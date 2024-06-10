@@ -25,3 +25,4 @@ function loadTikTokLiveStreamTextDomain() {
     load_plugin_textdomain('tiktok-live-stream', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 }
 add_action('plugins_loaded', 'loadTikTokLiveStreamTextDomain');
+?>
