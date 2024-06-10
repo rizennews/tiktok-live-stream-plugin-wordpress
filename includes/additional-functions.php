@@ -11,7 +11,7 @@ function loadTikTokLiveStreamTextDomain() {
 add_action( 'plugins_loaded', 'loadTikTokLiveStreamTextDomain' );
 
 // Caching Function
-function getTikTokLiveStreamData($username) {
+function getTikTokLiveStreamDataWithCache($username) {
     $cache_key = 'tiktok_live_stream_' . $username;
     $liveStreamId = get_transient($cache_key);
 
@@ -32,36 +32,26 @@ function checkTikTokLiveStreamCompatibility() {
     $theme = wp_get_theme();
     $theme_name = $theme->get('Name');
     if ($theme_name === 'Hello Elementor') {
-        // Provide guidance on using the plugin with the Hello Elementor theme
         echo '<p>For optimal performance with the Hello Elementor theme, make sure to enable the plugin settings in the theme options panel.</p>';
     }
 
     // Check if the Live Stream plugin is active
     if (is_plugin_active('livestream/livestream.php')) {
-        // Provide guidance on using the plugin with the Live Stream plugin
         echo '<p>For compatibility with the Live Stream plugin, ensure that the plugin settings are configured correctly in the Live Stream settings page.</p>';
     }
 
-    // Add more compatibility checks as needed
     // Check for other themes or plugins and provide guidance accordingly
     if (is_plugin_active('another-plugin/another-plugin.php')) {
-        // Provide guidance on using the plugin with another plugin
         echo '<p>For compatibility with Another Plugin, ensure that the plugin settings are configured correctly in the Another Plugin settings page.</p>';
     }
 
     if ($theme_name === 'Another Theme') {
-        // Provide guidance on using the plugin with Another Theme
         echo '<p>For optimal performance with Another Theme, make sure to customize the plugin settings according to the theme requirements.</p>';
     }
-
-    // Add more compatibility checks here...
 }
-
-
 
 // Security Function
 function sanitizeTikTokLiveStreamData($data) {
-    // Sanitize the data fetched from TikTok before displaying it
     return wp_kses_post($data);
 }
 
@@ -86,11 +76,11 @@ function displayTikTokFeedbackForm() {
 
 // Form Submission Handler
 function handleTikTokFeedbackFormSubmission() {
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Retrieve form data
-        $name = $_POST['feedback-name'];
-        $email = $_POST['feedback-email'];
-        $message = $_POST['feedback-message'];
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['feedback-name'], $_POST['feedback-email'], $_POST['feedback-message'])) {
+        // Retrieve and sanitize form data
+        $name = sanitize_text_field($_POST['feedback-name']);
+        $email = sanitize_email($_POST['feedback-email']);
+        $message = sanitize_textarea_field($_POST['feedback-message']);
 
         // Send email notification to site admin
         $to = get_option('admin_email');
@@ -105,14 +95,12 @@ function handleTikTokFeedbackFormSubmission() {
         echo '<p>Your feedback has been submitted successfully. Thank you!</p>';
     }
 }
-
-// Hook form submission handler
 add_action('init', 'handleTikTokFeedbackFormSubmission');
 
 // Shortcode to display TikTok Live stream and feedback form
 function tiktokLiveStreamWithFeedbackShortcode() {
     $output = '<div class="livestream-container">';
-    $output .= displayTikTokLiveStream();
+    $output .= displayTikTokLiveStream('');
     $output .= '</div>';
     $output .= '<div class="feedback-form-container">';
     $output .= displayTikTokFeedbackForm();
