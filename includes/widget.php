@@ -14,7 +14,7 @@ class TikTok_Live_Stream_Widget extends WP_Widget {
     public function widget( $args, $instance ) {
         echo $args['before_widget'];
         echo $args['before_title'] . 'TikTok Live Stream' . $args['after_title'];
-        echo '[tiktok_live_stream username="' . esc_attr( $instance['username'] ) . '"]';
+        echo do_shortcode('[tiktok_live_stream username="' . esc_attr( $instance['username'] ) . '"]');
         echo $args['after_widget'];
     }
 
@@ -42,3 +42,4 @@ function register_tiktok_live_stream_widget() {
     register_widget( 'TikTok_Live_Stream_Widget' );
 }
 add_action( 'widgets_init', 'register_tiktok_live_stream_widget' );
+?>
