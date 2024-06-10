@@ -1,6 +1,6 @@
 <?php
 // Function to fetch TikTok Live stream data
-function getTikTokLiveStreamData($username) {
+function fetchTikTokLiveStreamData($username) {
     // Construct URL for TikTok Live stream
     $url = "https://www.tiktok.com/@{$username}?is_copy_url=0&is_from_webapp=v1&lang=en";
 
@@ -24,13 +24,13 @@ function getTikTokLiveStreamData($username) {
 // Function to generate HTML output with embedded TikTok live stream
 function displayTikTokLiveStream($username) {
     // Get TikTok Live stream data
-    $liveStreamId = getTikTokLiveStreamData($username);
+    $liveStreamId = getTikTokLiveStreamDataWithCache($username);
 
     // Generate HTML output with embedded live stream
     if ($liveStreamId) {
         $output = '<div class="tiktok-live-stream">';
         $output .= '<h2>TikTok Live Stream</h2>';
-        $output .= '<p>ID: ' . $liveStreamId . '</p>';
+        $output .= '<p>ID: ' . sanitize_text_field($liveStreamId) . '</p>';
         $output .= '</div>';
         return $output;
     } else {
