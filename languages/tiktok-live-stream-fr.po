@@ -1,0 +1,42 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: TikTok Live Stream Plugin\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-06-11 10:00+0000\n"
+"PO-Revision-Date: 2024-06-11 10:00+0000\n"
+"Last-Translator: Designolabs Studio <work.designolabs@gmail.com>\n"
+"Language-Team: French\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "TikTok Live Stream Plugin Settings"
+msgstr "Paramètres du plugin de diffusion en direct TikTok"
+
+msgid "TikTok Live Stream Settings"
+msgstr "Paramètres de diffusion en direct TikTok"
+
+msgid "TikTok Username"
+msgstr "Nom d'utilisateur TikTok"
+
+msgid "Save Settings"
+msgstr "Enregistrer les paramètres"
+
+msgid "Enter your TikTok username below."
+msgstr "Saisissez votre nom d'utilisateur TikTok ci-dessous."
+
+msgid "Feedback Form"
+msgstr "Formulaire de retour d'information"
+
+msgid "Name:"
+msgstr "Nom :"
+
+msgid "Email:"
+msgstr "Email :"
+
+msgid "Message:"
+msgstr "Message :"
+
+msgid "Submit"
+msgstr "Soumettre"
