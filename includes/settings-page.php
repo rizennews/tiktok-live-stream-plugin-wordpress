@@ -76,3 +76,4 @@ function tiktok_live_stream_settings_field_callback() {
 function tiktok_live_stream_settings_section_callback() {
     echo '<p>Enter your TikTok username below.</p>';
 }
+?>
