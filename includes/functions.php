@@ -24,13 +24,13 @@ function fetchTikTokLiveStreamData($username) {
 // Function to generate HTML output with embedded TikTok live stream
 function displayTikTokLiveStream($username) {
     // Get TikTok Live stream data
-    $liveStreamId = getTikTokLiveStreamDataWithCache($username);
+    $liveStreamId = getTikTokLiveStreamData($username);
 
     // Generate HTML output with embedded live stream
     if ($liveStreamId) {
         $output = '<div class="tiktok-live-stream">';
         $output .= '<h2>TikTok Live Stream</h2>';
-        $output .= '<p>ID: ' . sanitize_text_field($liveStreamId) . '</p>';
+        $output .= '<p>ID: ' . $liveStreamId . '</p>';
         $output .= '</div>';
         return $output;
     } else {
@@ -47,3 +47,4 @@ function tiktokLiveStreamShortcode($atts) {
     return displayTikTokLiveStream($atts['username']);
 }
 add_shortcode('tiktok_live_stream', 'tiktokLiveStreamShortcode');
+?>
