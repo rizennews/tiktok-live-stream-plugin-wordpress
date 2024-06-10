@@ -1,50 +1,62 @@
 <?php
-// Function to fetch TikTok Live stream data
-function fetchTikTokLiveStreamData($username) {
-    // Construct URL for TikTok Live stream
-    $url = "https://www.tiktok.com/@{$username}?is_copy_url=0&is_from_webapp=v1&lang=en";
+// Caching Function
+function getTikTokLiveStreamData($username) {
+    $cache_key = 'tiktok_live_stream_' . $username;
+    $liveStreamId = get_transient($cache_key);
 
-    // Make request to TikTok profile page
-    $response = wp_remote_get($url);
+    if (false === $liveStreamId) {
+        // Fetch data from TikTok
+        $liveStreamId = fetchTikTokLiveStreamData($username);
 
-    // Check for successful response
-    if (!is_wp_error($response)) {
-        $body = wp_remote_retrieve_body($response);
-        preg_match('/"id":"(.*?)"/', $body, $matches);
-        
-        // Check if live video data exists
-        if (isset($matches[1])) {
-            return $matches[1];
-        }
+        // Cache the data for 1 hour
+        set_transient($cache_key, $liveStreamId, HOUR_IN_SECONDS);
     }
-    
-    return false;
+
+    return $liveStreamId;
 }
 
-// Function to generate HTML output with embedded TikTok live stream
-function displayTikTokLiveStream($username) {
-    // Get TikTok Live stream data
+// Function to fetch TikTok live stream data
+function fetchTikTokLiveStreamData($username) {
+    // Fetch data from TikTok API or perform web scraping to get the live stream data
+    // For demonstration purposes, we'll return a mock data
+    $liveStreamId = '123456789';
+    return $liveStreamId;
+}
+
+// Shortcode Function
+function displayTikTokLiveStream($atts) {
+    $atts = shortcode_atts(array(
+        'username' => 'default_username',
+    ), $atts, 'tiktok_live_stream');
+
+    $username = sanitize_text_field($atts['username']);
     $liveStreamId = getTikTokLiveStreamData($username);
 
-    // Generate HTML output with embedded live stream
     if ($liveStreamId) {
-        $output = '<div class="tiktok-live-stream">';
-        $output .= '<h2>TikTok Live Stream</h2>';
-        $output .= '<p>ID: ' . $liveStreamId . '</p>';
-        $output .= '</div>';
-        return $output;
+        return '<iframe src="https://www.tiktok.com/live/' . esc_attr($liveStreamId) . '" width="600" height="400"></iframe>';
     } else {
-        return '<p>No live stream available at the moment.</p>';
+        return handleTikTokError();
     }
 }
+add_shortcode('tiktok_live_stream', 'displayTikTokLiveStream');
 
-// Shortcode to display TikTok Live stream
-function tiktokLiveStreamShortcode($atts) {
+// Shortcode Function with Feedback Form
+function displayTikTokLiveStreamWithFeedback($atts) {
     $atts = shortcode_atts(array(
-        'username' => ''
-    ), $atts);
-    
-    return displayTikTokLiveStream($atts['username']);
+        'username' => 'default_username',
+    ), $atts, 'tiktok_live_stream_with_feedback');
+
+    $username = sanitize_text_field($atts['username']);
+    $liveStreamId = getTikTokLiveStreamData($username);
+
+    ob_start();
+    if ($liveStreamId) {
+        echo '<iframe src="https://www.tiktok.com/live/' . esc_attr($liveStreamId) . '" width="600" height="400"></iframe>';
+    } else {
+        echo handleTikTokError();
+    }
+    displayTikTokFeedbackForm();
+    return ob_get_clean();
 }
-add_shortcode('tiktok_live_stream', 'tiktokLiveStreamShortcode');
+add_shortcode('tiktok_live_stream_with_feedback', 'displayTikTokLiveStreamWithFeedback');
 ?>
