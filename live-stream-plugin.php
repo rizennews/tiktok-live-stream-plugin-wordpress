@@ -3,7 +3,7 @@
 Plugin Name: TikTok Live Stream Plugin
 Plugin URI: https://github.com/rizennews/tiktok-live-stream-plugin-wordpress
 Description: Custom Plugin to embed live streams from TikTok.
-Version: 1.0.1
+Version: 1.0
 Author: Padmore Aning
 Author URI: https://github.com/rizennews
 */
@@ -19,3 +19,9 @@ require_once plugin_dir_path(__FILE__) . 'includes/functions.php';
 
 // Include plugin widget
 require_once plugin_dir_path(__FILE__) . 'includes/widget.php';
+
+// Load text domain for translations
+function loadTikTokLiveStreamTextDomain() {
+    load_plugin_textdomain('tiktok-live-stream', false, dirname(plugin_basename(__FILE__)) . '/languages/');
+}
+add_action('plugins_loaded', 'loadTikTokLiveStreamTextDomain');
