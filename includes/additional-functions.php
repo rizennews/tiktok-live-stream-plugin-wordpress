@@ -4,21 +4,11 @@ function handleTikTokError() {
     return '<p>There was an error fetching the TikTok live stream data. Please try again later.</p>';
 }
 
-// Caching Function
-function getTikTokLiveStreamData($username) {
-    $cache_key = 'tiktok_live_stream_' . $username;
-    $liveStreamId = get_transient($cache_key);
-
-    if (false === $liveStreamId) {
-        // Fetch data from TikTok
-        $liveStreamId = fetchTikTokLiveStreamData($username);
-
-        // Cache the data for 1 hour
-        set_transient($cache_key, $liveStreamId, HOUR_IN_SECONDS);
-    }
-
-    return $liveStreamId;
+// Translation Function
+function loadTikTokLiveStreamTextDomain() {
+    load_plugin_textdomain('tiktok-live-stream', false, dirname(plugin_basename(__FILE__)) . '/languages/');
 }
+add_action('plugins_loaded', 'loadTikTokLiveStreamTextDomain');
 
 // Compatibility Function
 function checkTikTokLiveStreamCompatibility() {
@@ -36,14 +26,12 @@ function checkTikTokLiveStreamCompatibility() {
         echo '<p>For compatibility with the Live Stream plugin, ensure that the plugin settings are configured correctly in the Live Stream settings page.</p>';
     }
 
-    // Check for other themes or plugins and provide guidance accordingly
+    // Add more compatibility checks as needed
     if (is_plugin_active('another-plugin/another-plugin.php')) {
-        // Provide guidance on using the plugin with another plugin
         echo '<p>For compatibility with Another Plugin, ensure that the plugin settings are configured correctly in the Another Plugin settings page.</p>';
     }
 
     if ($theme_name === 'Another Theme') {
-        // Provide guidance on using the plugin with Another Theme
         echo '<p>For optimal performance with Another Theme, make sure to customize the plugin settings according to the theme requirements.</p>';
     }
 }
