@@ -1,85 +1,72 @@
-Certainly! Let's break down each section of the README file to provide detailed explanations:
-
----
-
 # TikTok Live Stream Plugin
 
-This section serves as the main title of your README file, providing a clear indication of what the plugin is about.
-
----
+The TikTok Live Stream Plugin allows you to embed TikTok live streams on your WordPress website and collect feedback from your audience.
 
 ## Features
 
-In this section, you list the key features of your TikTok Live Stream Plugin. Each feature should be described concisely, highlighting the benefits it offers to users. For example:
-
-- Embed TikTok live streams with a simple shortcode.
-- Customize the appearance and behavior of the embedded live streams.
-- Settings page to configure TikTok username and other options.
-- Widget support for easy integration into your website's sidebar or other widgetized areas.
-
----
+- Display TikTok live streams on your website.
+- Collect feedback from viewers with a customizable feedback form.
+- Display the live stream and feedback form together on any post, page, or widgetized area.
 
 ## Installation
 
-Here, you explain how users can install the plugin on their WordPress websites. Break down the installation process into clear, step-by-step instructions. For example:
-
-1. Download the plugin ZIP file from the [latest release](https://github.com/yourusername/tiktok-live-stream-plugin/releases).
-2. Upload the plugin ZIP file to your WordPress website.
-3. Activate the plugin through the WordPress admin dashboard.
-
----
+1. Download the plugin zip file from the GitHub repository.
+2. In your WordPress admin panel, navigate to Plugins > Add New.
+3. Click on the "Upload Plugin" button, select the plugin zip file, and click "Install Now."
+4. Activate the plugin.
 
 ## Usage
 
-This section provides instructions on how users can utilize the plugin's features on their websites. Explain how users can embed TikTok live streams using shortcodes, add widgets, and configure settings. For example:
-
 ### Shortcode
+
+Use the following shortcode to display the TikTok live stream and feedback form together on any post or page:
+
+```
+[tiktok_live_stream_with_feedback]
+```
 
 Use the following shortcode to embed a TikTok live stream on any page or post:
 
 ```
 [tiktok_live_stream username="USERNAME"]
-```
+Replace USERNAME with your TikTok username.
 
-Replace `USERNAME` with your TikTok username.
+```
 
 ### Widget
 
-You can also add the TikTok Live Stream Widget to your website's sidebar or other widgetized areas. Navigate to Appearance > Widgets and drag the "TikTok Live Stream Widget" to the desired widget area. Enter your TikTok username in the widget settings.
+You can also use the TikTok Live Stream Widget to display the live stream and feedback form together in a widgetized area of your theme.
 
-### Settings
+1. Go to Appearance > Widgets in your WordPress admin panel.
+2. Drag the "TikTok Live Stream Widget" to the desired widget area.
+3. Enter your TikTok Username and URL or TikTok Profile ID in the widget settings.
 
-Navigate to Settings > TikTok Live Settings to configure your TikTok username and other options.
+### Feedback Form and Live Stream Together
 
----
+You can display the live stream and feedback form together by using the shortcode or widget in your posts, pages, or widgetized areas. This allows your audience to watch the live stream and submit feedback simultaneously, enhancing user engagement and interaction.
+
+## Configuration
+
+Before using the plugin, you'll need to obtain your TikTok Username and URL or TikTok Profile ID:
+
+1. **TikTok Username**: Enter your TikTok Username.
+2. **TikTok URL or Profile ID**: Provide the URL of your TikTok profile or the Profile ID.
+
+Once you have obtained this information, you can configure the plugin settings in the WordPress admin panel.
 
 ## Compatibility
 
-In this section, you address the compatibility of your plugin with different WordPress themes and plugins. If your plugin has been tested with specific themes or plugins, mention them here. For example:
-
-This plugin is compatible with a wide range of WordPress themes and plugins. If you encounter any compatibility issues, please reach out to the plugin support team for assistance.
-
----
+This plugin is compatible with all modern WordPress themes. However, some themes or plugins may require additional styling adjustments for optimal display.
 
 ## Feedback
 
-Encourage users to provide feedback on the plugin's usability, features, and any issues they encounter. Provide instructions on how users can submit feedback or support tickets. For example:
+We welcome your feedback! If you have any suggestions, feature requests, or bug reports, please feel free to submit them through our [GitHub repository](https://github.com/rizennews/tiktok-live-stream-plugin/issues).
 
-We welcome your feedback! If you have any suggestions or encounter any issues while using the plugin, please [submit a support ticket](https://github.com/yourusername/tiktok-live-stream-plugin/issues/new).
+## Support
 
----
-
-## Contributing
-
-If you allow contributions to your plugin's development, explain how users can contribute to the project. Provide guidelines for forking the repository, making changes, and submitting pull requests. For example:
-
-Contributions to the development of this plugin are welcome. To contribute, fork the repository, make your changes, and submit a pull request.
-
----
+For support or assistance with the plugin, you can reach out to us through our [GitHub repository](https://github.com/rizennews/tiktok-live-stream-plugin/issues) or contact us via email at support@example.com.
 
 ## License
-
-Finally, specify the license under which your plugin is distributed. Include a link to the license file for users to review. For example:
 
 This plugin is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 

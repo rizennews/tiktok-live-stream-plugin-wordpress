@@ -59,4 +59,8 @@ function displayTikTokLiveStreamWithFeedback($atts) {
     return ob_get_clean();
 }
 add_shortcode('tiktok_live_stream_with_feedback', 'displayTikTokLiveStreamWithFeedback');
+<<<<<<< HEAD
 ?>
+=======
+?>
+>>>>>>> d614e61420d858d5e32039694a944d3d66f2a9eb
