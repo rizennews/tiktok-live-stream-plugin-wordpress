@@ -1,6 +1,7 @@
 <?php
 // Caching Function
 function getTikTokLiveStreamData($username) {
+    $username = ltrim($username, '@'); // Ensure the username does not start with @
     $cache_key = 'tiktok_live_stream_' . $username;
     $liveStreamId = get_transient($cache_key);
 
@@ -29,7 +30,7 @@ function displayTikTokLiveStream($atts) {
         'username' => 'default_username',
     ), $atts, 'tiktok_live_stream');
 
-    $username = sanitize_text_field($atts['username']);
+    $username = ltrim(sanitize_text_field($atts['username']), '@'); // Sanitize and remove @ if present
     $liveStreamId = getTikTokLiveStreamData($username);
 
     if ($liveStreamId) {
@@ -46,7 +47,7 @@ function displayTikTokLiveStreamWithFeedback($atts) {
         'username' => 'default_username',
     ), $atts, 'tiktok_live_stream_with_feedback');
 
-    $username = sanitize_text_field($atts['username']);
+    $username = ltrim(sanitize_text_field($atts['username']), '@'); // Sanitize and remove @ if present
     $liveStreamId = getTikTokLiveStreamData($username);
 
     ob_start();

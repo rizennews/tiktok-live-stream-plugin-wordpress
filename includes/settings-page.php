@@ -23,9 +23,10 @@ function tiktok_live_stream_plugin_settings_page_content() {
         </form>
         <p>To display the TikTok Live stream on your website, use the following shortcode on any page or post:</p>
         <pre>[tiktok_live_stream username="USERNAME"]</pre>
-        <p>Replace "USERNAME" with your TikTok username.</p>
+        <p>Replace "USERNAME" with your TikTok username (without the @ symbol).</p>
         <p>To display the TikTok Live stream and feedback form on your website, use the following shortcode on any page or post:</p>
-        <pre>[tiktok_live_stream_with_feedback]</pre>
+        <pre>[tiktok_live_stream_with_feedback username="USERNAME"]</pre>
+        <p>Replace "USERNAME" with your TikTok username (without the @ symbol).</p>
         <p>If you find this plugin helpful, consider buying us a coffee!</p>
         <a href="https://www.buymeacoffee.com/designolabs" target="_blank">
             <img src="https://img.buymeacoffee.com/button-api/?text=Buy%20us%20a%20coffee&emoji=&slug=yourusername&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff">
@@ -65,7 +66,7 @@ function tiktok_live_stream_settings_field_callback() {
     ?>
     <table class="form-table">
         <tr valign="top">
-            <th scope="row">TikTok Username</th>
+            <th scope="row">TikTok Username (without @)</th>
             <td><input type="text" name="tiktok_live_stream_settings[tiktok_username]" value="<?php echo esc_attr($settings['tiktok_username']); ?>" /></td>
         </tr>
     </table>
@@ -74,6 +75,6 @@ function tiktok_live_stream_settings_field_callback() {
 
 // Callback function to render TikTok Live Stream Settings section
 function tiktok_live_stream_settings_section_callback() {
-    echo '<p>Enter your TikTok username below.</p>';
+    echo '<p>Enter your TikTok username below (without the @ symbol).</p>';
 }
 ?>

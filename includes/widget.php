@@ -9,7 +9,7 @@ class TikTokLiveStreamWidget extends WP_Widget {
     }
 
     public function widget($args, $instance) {
-        $username = !empty($instance['username']) ? $instance['username'] : 'default_username';
+        $username = !empty($instance['username']) ? ltrim($instance['username'], '@') : 'default_username';
         $liveStreamId = getTikTokLiveStreamData($username);
 
         echo $args['before_widget'];
@@ -33,7 +33,7 @@ class TikTokLiveStreamWidget extends WP_Widget {
             <input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($title); ?>">
         </p>
         <p>
-            <label for="<?php echo $this->get_field_id('username'); ?>">TikTok Username:</label>
+            <label for="<?php echo $this->get_field_id('username'); ?>">TikTok Username (without @):</label>
             <input class="widefat" id="<?php echo $this->get_field_id('username'); ?>" name="<?php echo $this->get_field_name('username'); ?>" type="text" value="<?php echo esc_attr($username); ?>">
         </p>
         <?php
@@ -42,7 +42,7 @@ class TikTokLiveStreamWidget extends WP_Widget {
     public function update($new_instance, $old_instance) {
         $instance = array();
         $instance['title'] = sanitize_text_field($new_instance['title']);
-        $instance['username'] = sanitize_text_field($new_instance['username']);
+        $instance['username'] = ltrim(sanitize_text_field($new_instance['username']), '@');
         return $instance;
     }
 }
