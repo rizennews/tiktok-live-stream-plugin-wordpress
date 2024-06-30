@@ -4,12 +4,6 @@ function handleTikTokError() {
     return '<p>There was an error fetching the TikTok live stream data. Please try again later.</p>';
 }
 
-// Translation Function
-function loadTikTokLiveStreamTextDomain() {
-    load_plugin_textdomain('tiktok-live-stream', false, dirname(plugin_basename(__FILE__)) . '/languages/');
-}
-add_action('plugins_loaded', 'loadTikTokLiveStreamTextDomain');
-
 // Compatibility Function
 function checkTikTokLiveStreamCompatibility() {
     // Check if the active theme is Hello Elementor
@@ -63,25 +57,23 @@ function displayTikTokFeedbackForm() {
 
 // Form Submission Handler
 function handleTikTokFeedbackFormSubmission() {
-    if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['feedback-name'], $_POST['feedback-email'], $_POST['feedback-message'])) {
+    if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($_POST['feedback-name']) && !empty($_POST['feedback-email']) && !empty($_POST['feedback-message'])) {
         // Retrieve form data
         $name = sanitize_text_field($_POST['feedback-name']);
         $email = sanitize_email($_POST['feedback-email']);
         $message = sanitize_textarea_field($_POST['feedback-message']);
 
-        if (!empty($name) && !empty($email) && !empty($message)) {
-            // Send email notification to site admin
-            $to = get_option('admin_email');
-            $subject = 'Feedback from TikTok Live Stream Plugin';
-            $body = "Name: $name\nEmail: $email\n\n$message";
-            $headers = array('Content-Type: text/html; charset=UTF-8');
+        // Send email notification to site admin
+        $to = get_option('admin_email');
+        $subject = 'Feedback from TikTok Live Stream Plugin';
+        $body = "Name: $name\nEmail: $email\n\n$message";
+        $headers = array('Content-Type: text/html; charset=UTF-8');
 
-            // Send email
-            wp_mail($to, $subject, $body, $headers);
+        // Send email
+        wp_mail($to, $subject, $body, $headers);
 
-            // Display success message
-            echo '<p>Your feedback has been submitted successfully. Thank you!</p>';
-        }
+        // Display success message
+        echo '<p>Your feedback has been submitted successfully. Thank you!</p>';
     }
 }
 add_action('init', 'handleTikTokFeedbackFormSubmission');
