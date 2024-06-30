@@ -1,7 +1,6 @@
 <?php
 // Caching Function
 function getTikTokLiveStreamData($username) {
-    $username = ltrim($username, '@'); // Ensure the username does not start with @
     $cache_key = 'tiktok_live_stream_' . $username;
     $liveStreamId = get_transient($cache_key);
 
@@ -18,10 +17,36 @@ function getTikTokLiveStreamData($username) {
 
 // Function to fetch TikTok live stream data
 function fetchTikTokLiveStreamData($username) {
-    // Fetch data from TikTok API or perform web scraping to get the live stream data
-    // For demonstration purposes, we'll return a mock data
-    $liveStreamId = '123456789';
-    return $liveStreamId;
+    $url = "https://www.tiktok.com/@$username/live"; // Hypothetical URL
+
+    $response = wp_remote_get($url);
+
+    if (is_wp_error($response)) {
+        return false;
+    }
+
+    $response_code = wp_remote_retrieve_response_code($response);
+    if ($response_code == 404) {
+        return false;
+    }
+
+    $body = wp_remote_retrieve_body($response);
+
+    // Load the HTML into a DOMDocument
+    $dom = new DOMDocument();
+    @$dom->loadHTML($body); // Suppress warnings from malformed HTML
+
+    // Use DOMXPath to query the DOM
+    $xpath = new DOMXPath($dom);
+
+    // Hypothetical query to find the live stream ID
+    $nodes = $xpath->query("//div[@class='live-stream-id']");
+
+    if ($nodes->length > 0) {
+        return $nodes->item(0)->nodeValue;
+    }
+
+    return false;
 }
 
 // Shortcode Function
@@ -30,13 +55,15 @@ function displayTikTokLiveStream($atts) {
         'username' => 'default_username',
     ), $atts, 'tiktok_live_stream');
 
-    $username = ltrim(sanitize_text_field($atts['username']), '@'); // Sanitize and remove @ if present
+    $username = sanitize_text_field($atts['username']);
     $liveStreamId = getTikTokLiveStreamData($username);
 
     if ($liveStreamId) {
-        return '<iframe src="https://www.tiktok.com/live/' . esc_attr($liveStreamId) . '" width="600" height="400"></iframe>';
+        return '<iframe src="https://www.tiktok.com/live/' . esc_attr($liveStreamId) . '" width="600" height="400" frameborder="0" allowfullscreen></iframe>';
     } else {
-        return handleTikTokError();
+        return '<div class="no-live-stream" style="text-align:center; padding:20px; border:2px solid #ccc; border-radius:10px; background-color:#f9f9f9;">
+                  <p style="font-size:18px; color:#555;">No live stream is currently available. Please check back later.</p>
+                </div>';
     }
 }
 add_shortcode('tiktok_live_stream', 'displayTikTokLiveStream');
@@ -47,14 +74,16 @@ function displayTikTokLiveStreamWithFeedback($atts) {
         'username' => 'default_username',
     ), $atts, 'tiktok_live_stream_with_feedback');
 
-    $username = ltrim(sanitize_text_field($atts['username']), '@'); // Sanitize and remove @ if present
+    $username = sanitize_text_field($atts['username']);
     $liveStreamId = getTikTokLiveStreamData($username);
 
     ob_start();
     if ($liveStreamId) {
-        echo '<iframe src="https://www.tiktok.com/live/' . esc_attr($liveStreamId) . '" width="600" height="400"></iframe>';
+        echo '<iframe src="https://www.tiktok.com/live/' . esc_attr($liveStreamId) . '" width="600" height="400" frameborder="0" allowfullscreen></iframe>';
     } else {
-        echo handleTikTokError();
+        echo '<div class="no-live-stream" style="text-align:center; padding:20px; border:2px solid #ccc; border-radius:10px; background-color:#f9f9f9;">
+                  <p style="font-size:18px; color:#555;">No live stream is currently available. Please check back later.</p>
+                </div>';
     }
     displayTikTokFeedbackForm();
     return ob_get_clean();
