@@ -4,12 +4,6 @@ function handleTikTokError() {
     return '<p>There was an error fetching the TikTok live stream data. Please try again later.</p>';
 }
 
-// Translation Function
-function loadTikTokLiveStreamTextDomain() {
-    load_plugin_textdomain('tiktok-live-stream', false, dirname(plugin_basename(__FILE__)) . '/languages/');
-}
-add_action('plugins_loaded', 'loadTikTokLiveStreamTextDomain');
-
 // Compatibility Function
 function checkTikTokLiveStreamCompatibility() {
     // Check if the active theme is Hello Elementor
